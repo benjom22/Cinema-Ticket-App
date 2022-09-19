@@ -1,0 +1,48 @@
+<div class="content">
+    <div class="top-bar-1">
+        <h1>Latest Events</h1>
+        <input type="text" placeholder="Search">
+    </div>
+
+
+    <div id="events-list">
+        <div class="row">
+            <div class="col-md-4 col-sm-3 col-xs-2">
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+<script>
+    feather.replace();
+    
+    function getEvents(id) {
+        $.ajax({
+            url: 'rest/events',
+            type: 'GET',
+            success: function(data) {
+                var html = '';
+                for (let i = 0; i < data.length; i++) {
+                  html += `   
+                    <div class="card" style="width: 18rem;">
+                      <img class="card-img-top" src="https://tntportal.ba/wp-content/uploads/2022/03/cinestar-tuzla-filmovi.png" alt="Card image cap">
+                      <div class="card-body">
+                        <h5 class="card-title">`+data[i].title+`e</h5>
+                        <p class="card-text date"><i class="feather-12" data-feather="calendar"></i><span>17.04.2021</span></p>
+                        <p class="card-text time"><i class="feather-12" data-feather="clock"></i><span>17.04.2021</span></p>
+                      </div>
+                    </div>`
+                }
+                
+                  
+          
+                  
+                $("#events-list").html(html);
+
+            }
+
+        });
+    }
+</script>
